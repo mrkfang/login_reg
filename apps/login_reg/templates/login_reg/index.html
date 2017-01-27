@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Registration and Login</title>
+    <style type="text/css">
+    .field {
+         width: 160px
+    }
+</style>
+  </head>
+  <body>
+
+    <form action="/register" method="post">
+      <fieldset class='field'>
+        <legend>Register New Account</legend>
+      {% csrf_token %}
+      First Name: <br><input type="text" name="first_name"><br>
+      Last Name: <br><input type="text" name="last_name"><br>
+      Email: <br><input type="text" name="email"><br>
+      Password: <br><input type="password" name="password"><br>
+      Confirm Pass: <br><input type="password" name="confirm_password"><br>
+      <input type="submit" value="Register">
+      </fieldset>
+    </form>
+
+    <br><br>
+
+    <form action="/login" method="post">
+      {% csrf_token %}
+      <fieldset class="field">
+        <legend>User Login:</legend>
+      Email: <br><input type="text" name="email"><br>
+      Password: <br><input type="text" name="password"><br>
+      <input type="submit" value="Login">
+      </fieldset>
+    </form><br>
+
+
+      {% for msg in messages %}
+     	* {{msg.message}}<br>
+      {% endfor %}
+
+
+    {% for x in datas %}<br>
+    id: {{ x.id }}<br>
+    first_name: {{ x.first_name }}<br>
+    last_name: {{ x.last_name }}<br>
+    email: {{ x.email }}<br>
+    password: {{ x.password }}<br>
+    created: {{ x.created_at }}<hr>
+    {% endfor %}
+
+  </body>
+</html>
